@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -78,7 +79,9 @@ body::before {
 }
 
 @keyframes load {
-    to { width: 100%; }
+    to {
+        width: 100%;
+    }
 }
 
 /* HERO */
@@ -122,8 +125,13 @@ body::before {
 }
 
 @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .hero-sub {
@@ -167,69 +175,6 @@ section {
     margin-bottom: 55px;
 }
 
-/* FUN TEST */
-
-.test-box {
-    background: #101010;
-    border: 1px solid #222;
-    border-radius: 30px;
-    padding: 50px 30px;
-    text-align: center;
-}
-
-.question {
-    font-size: clamp(22px, 4vw, 38px);
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 35px;
-}
-
-.answers {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    max-width: 650px;
-    margin: auto;
-}
-
-.answer {
-    background: #181818;
-    color: #fff;
-    border: 1px solid #292929;
-    border-radius: 16px;
-    padding: 18px;
-    font-weight: 600;
-    transition: .25s;
-}
-
-.answer:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-3px);
-}
-
-.test-result {
-    display: none;
-    margin-top: 30px;
-    font-size: 20px;
-    line-height: 1.6;
-}
-
-.test-result.show {
-    display: block;
-    animation: appear .6s ease;
-}
-
-.ready {
-    display: none;
-    margin-top: 30px;
-}
-
-.ready.show {
-    display: inline-block;
-    animation: appear .6s ease;
-}
-
 /* PHOTO */
 
 .photo-card {
@@ -237,8 +182,7 @@ section {
     min-height: 500px;
     border-radius: 30px;
     border: 1px solid #222;
-    background:
-        linear-gradient(135deg, #151515, #090909);
+    background: linear-gradient(135deg, #151515, #090909);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -355,8 +299,8 @@ footer strong {
     right: 20px;
     bottom: 20px;
     z-index: 100;
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -364,6 +308,7 @@ footer strong {
     background: #151515;
     color: #fff;
     border: 1px solid #333;
+    font-size: 20px;
 }
 
 /* CONFETTI */
@@ -391,10 +336,6 @@ footer strong {
         letter-spacing: -5px;
     }
 
-    .answers {
-        grid-template-columns: 1fr;
-    }
-
     .photo-card,
     .photo-card img {
         min-height: 350px;
@@ -418,10 +359,12 @@ footer strong {
 
 <!-- MUSIC -->
 
-<button class="music" id="musicBtn" onclick="toggleMusic()">♫</button>
+<button class="music" id="musicBtn" aria-label="Музыка">
+    ♫
+</button>
 
-<audio id="music" loop>
-    <source src="swages.mp3" type="audio/mpeg">
+<audio id="music" loop preload="auto">
+    <source src="./swages.mp3" type="audio/mpeg">
 </audio>
 
 
@@ -453,44 +396,12 @@ footer strong {
 </section>
 
 
-<!-- TEST -->
-
-<section>
-
-    <div class="section-label">
-        01 / security check
-    </div>
-
-    <h2 class="section-title">
-        Проверка на<br>
-        Полину.
-    </h2>
-
-    <div class="test-box" id="testBox">
-
-        <div class="question" id="question">
-            Вопрос загружается...
-        </div>
-
-        <div class="answers" id="answers"></div>
-
-        <div class="test-result" id="testResult"></div>
-
-        <button class="ready" id="readyBtn" onclick="openSecret()">
-            Я ГОТОВА
-        </button>
-
-    </div>
-
-</section>
-
-
 <!-- PHOTO -->
 
 <section>
 
     <div class="section-label">
-        02 / visual evidence
+        01 / visual evidence
     </div>
 
     <h2 class="section-title">
@@ -500,7 +411,7 @@ footer strong {
 
     <div class="photo-card">
 
-        <img src="polina.jpg" alt="Polina">
+        <img src="./polina.jpg" alt="Polina">
 
         <div class="photo-placeholder">
             <span>📸</span>
@@ -520,7 +431,7 @@ footer strong {
 <section class="secret">
 
     <div class="section-label">
-        03 / classified
+        02 / classified
     </div>
 
     <div class="secret-box">
@@ -531,18 +442,19 @@ footer strong {
         </h3>
 
         <p>
-            Ты прошла проверку.
-            Хотя если честно — других вариантов
-            мы и не рассматривали.
+            Никаких тестов.
+            Никаких проверок.
+            Просто нажми.
         </p>
 
-        <button onclick="openSecret()">
-            ОТКРЫТЬ СЕКРЕТ
+        <button id="secretBtn">
+            ОТКРЫТЬ
         </button>
 
         <div class="message" id="message">
 
             Полина, с днём рождения! ❤️
+
             <br><br>
 
             Желаю тебе, чтобы этот год был настолько ахуенным,
@@ -600,157 +512,79 @@ window.addEventListener("load", () => {
 });
 
 
-/* TEST */
+/* MUSIC */
 
-const questions = [
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
-    {
-        question: "Кто сегодня главный человек?",
-        answers: [
-            "Полина 👑",
-            "Кто-то другой",
-            "Мой кот",
-            "Правительство"
-        ],
-        correct: 0
-    },
+let musicStarted = false;
 
-    {
-        question: "Что Полина заслуживает сегодня?",
-        answers: [
-            "Проблем",
-            "Поздравлений и подарков 🎁",
-            "Работы",
-            "Ничего"
-        ],
-        correct: 1
-    },
+async function playMusic() {
 
-    {
-        question: "Самое важное правило сегодня?",
-        answers: [
-            "Не улыбаться",
-            "Грустить",
-            "Отдыхать и кайфовать ❤️",
-            "Лечь спать в 21:00"
-        ],
-        correct: 2
+    try {
+
+        await music.play();
+
+        musicStarted = true;
+        musicBtn.textContent = "Ⅱ";
+
+    } catch (error) {
+
+        console.log("Не удалось запустить музыку:", error);
+
     }
-
-];
-
-let currentQuestion = 0;
-let score = 0;
-
-function loadQuestion() {
-
-    const question = questions[currentQuestion];
-
-    document.getElementById("question").textContent =
-        question.question;
-
-    const answers =
-        document.getElementById("answers");
-
-    answers.innerHTML = "";
-
-    question.answers.forEach((answer, index) => {
-
-        const button =
-            document.createElement("button");
-
-        button.className = "answer";
-        button.textContent = answer;
-
-        button.onclick = () => checkAnswer(index);
-
-        answers.appendChild(button);
-
-    });
 
 }
 
-function checkAnswer(index) {
+function pauseMusic() {
 
-    const question = questions[currentQuestion];
+    music.pause();
+    musicBtn.textContent = "♫";
 
-    if(index === question.correct) {
-        score++;
-    }
+}
 
-    currentQuestion++;
+musicBtn.addEventListener("click", async () => {
 
-    if(currentQuestion < questions.length) {
+    if (music.paused) {
 
-        loadQuestion();
+        await playMusic();
 
     } else {
 
-        finishTest();
+        pauseMusic();
 
     }
 
-}
-
-function finishTest() {
-
-    document.getElementById("answers").style.display = "none";
-
-    document.getElementById("question").textContent =
-        "Проверка завершена.";
-
-    const result =
-        document.getElementById("testResult");
-
-    result.classList.add("show");
-
-    result.innerHTML =
-        `Результат: <strong>${score}/${questions.length}</strong> ❤️<br><br>
-        Система постановила: ты официально Полина.`;
-
-    document
-        .getElementById("readyBtn")
-        .classList.add("show");
-
-}
-
-loadQuestion();
+});
 
 
-/* SECRET + MUSIC */
+/*
+   Первый клик по странице запускает музыку.
+   Это нужно из-за ограничений браузеров
+   на автоматическое воспроизведение.
+*/
 
-function openSecret() {
+document.addEventListener("click", () => {
 
-    const music =
-        document.getElementById("music");
+    if (!musicStarted) {
+        playMusic();
+    }
 
-    const musicBtn =
-        document.getElementById("musicBtn");
-
-    /*
-        Запускаем музыку.
-        Браузер разрешает это,
-        потому что функция вызывается
-        после нажатия пользователем.
-    */
-
-    music.play()
-        .then(() => {
-
-            musicBtn.textContent = "Ⅱ";
-
-        })
-        .catch(error => {
-
-            console.log("Music error:", error);
-
-        });
+}, { once: true });
 
 
-    const message =
-        document.getElementById("message");
+/* SECRET */
+
+const secretBtn = document.getElementById("secretBtn");
+const message = document.getElementById("message");
+
+secretBtn.addEventListener("click", async () => {
+
+    await playMusic();
 
     message.classList.add("show");
+
+    secretBtn.style.display = "none";
 
     createConfetti(100);
 
@@ -763,44 +597,16 @@ function openSecret() {
 
     }, 100);
 
-}
-
-
-/* MUSIC BUTTON */
-
-function toggleMusic() {
-
-    const music =
-        document.getElementById("music");
-
-    const btn =
-        document.getElementById("musicBtn");
-
-    if (music.paused) {
-
-        music.play();
-
-        btn.textContent = "Ⅱ";
-
-    } else {
-
-        music.pause();
-
-        btn.textContent = "♫";
-
-    }
-
-}
+});
 
 
 /* CONFETTI */
 
 function createConfetti(amount = 60) {
 
-    for(let i = 0; i < amount; i++) {
+    for (let i = 0; i < amount; i++) {
 
-        const piece =
-            document.createElement("div");
+        const piece = document.createElement("div");
 
         piece.className = "confetti";
 
@@ -814,7 +620,7 @@ function createConfetti(amount = 60) {
             Math.random() * 1.5 + "s";
 
         piece.style.background =
-            ["#fff","#888","#555","#ccc"]
+            ["#fff", "#888", "#555", "#ccc"]
             [Math.floor(Math.random() * 4)];
 
         piece.style.transform =
@@ -859,3 +665,4 @@ photo.addEventListener("error", () => {
 
 </body>
 </html>
+```
