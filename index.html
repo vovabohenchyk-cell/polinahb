@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -168,37 +167,67 @@ section {
     margin-bottom: 55px;
 }
 
-/* STATS */
+/* FUN TEST */
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-}
-
-.stat {
+.test-box {
     background: #101010;
-    border: 1px solid #1e1e1e;
-    border-radius: 20px;
-    padding: 30px;
-    min-height: 150px;
-    transition: .3s;
+    border: 1px solid #222;
+    border-radius: 30px;
+    padding: 50px 30px;
+    text-align: center;
 }
 
-.stat:hover {
-    transform: translateY(-6px);
-    border-color: #444;
-}
-
-.stat-number {
-    font-size: 35px;
+.question {
+    font-size: clamp(22px, 4vw, 38px);
     font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 35px;
 }
 
-.stat-name {
-    color: #777;
-    margin-top: 12px;
-    font-size: 13px;
+.answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 650px;
+    margin: auto;
+}
+
+.answer {
+    background: #181818;
+    color: #fff;
+    border: 1px solid #292929;
+    border-radius: 16px;
+    padding: 18px;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.answer:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.test-result {
+    display: none;
+    margin-top: 30px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.test-result.show {
+    display: block;
+    animation: appear .6s ease;
+}
+
+.ready {
+    display: none;
+    margin-top: 30px;
+}
+
+.ready.show {
+    display: inline-block;
+    animation: appear .6s ease;
 }
 
 /* PHOTO */
@@ -298,6 +327,7 @@ button:hover {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -356,27 +386,18 @@ footer strong {
 /* MOBILE */
 
 @media(max-width: 750px) {
+
     .hero h1 {
         letter-spacing: -5px;
     }
 
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stat {
-        padding: 22px;
+    .answers {
+        grid-template-columns: 1fr;
     }
 
     .photo-card,
     .photo-card img {
         min-height: 350px;
-    }
-}
-
-@media(max-width: 450px) {
-    .stats {
-        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -388,30 +409,28 @@ footer strong {
 
 <div class="loader" id="loader">
     <div class="loader-text">POLINA.exe</div>
+
     <div class="loader-bar">
         <div class="loader-progress"></div>
     </div>
 </div>
+
 
 <!-- MUSIC -->
 
 <button class="music" id="musicBtn" onclick="toggleMusic()">♫</button>
 
 <audio id="music" loop>
-    <!--
-    ЕСЛИ ХОЧЕШЬ МУЗЫКУ:
-    положи music.mp3 рядом с index.html
-    и раскомментируй строку ниже
-
-    <source src="music.mp3" type="audio/mpeg">
-    -->
+    <source src="swages.mp3" type="audio/mpeg">
 </audio>
 
-<!-- HERO -->
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
+
     <div class="hero-content">
 
         <div class="badge">
@@ -430,50 +449,49 @@ footer strong {
         </div>
 
     </div>
+
 </section>
 
-<!-- STATS -->
+
+<!-- TEST -->
 
 <section>
 
-    <div class="section-label">01 / character stats</div>
+    <div class="section-label">
+        01 / security check
+    </div>
 
     <h2 class="section-title">
-        Характеристики<br>
-        объекта.
+        Проверка на<br>
+        Полину.
     </h2>
 
-    <div class="stats">
+    <div class="test-box" id="testBox">
 
-        <div class="stat">
-            <div class="stat-number">∞</div>
-            <div class="stat-name">Легендарность</div>
+        <div class="question" id="question">
+            Вопрос загружается...
         </div>
 
-        <div class="stat">
-            <div class="stat-number">99%</div>
-            <div class="stat-name">Красота</div>
-        </div>
+        <div class="answers" id="answers"></div>
 
-        <div class="stat">
-            <div class="stat-number">404</div>
-            <div class="stat-name">Скука не найдена</div>
-        </div>
+        <div class="test-result" id="testResult"></div>
 
-        <div class="stat">
-            <div class="stat-number">+1</div>
-            <div class="stat-name">Новый уровень</div>
-        </div>
+        <button class="ready" id="readyBtn" onclick="openSecret()">
+            Я ГОТОВА
+        </button>
 
     </div>
 
 </section>
 
+
 <!-- PHOTO -->
 
 <section>
 
-    <div class="section-label">02 / visual evidence</div>
+    <div class="section-label">
+        02 / visual evidence
+    </div>
 
     <h2 class="section-title">
         Доказательства<br>
@@ -482,30 +500,28 @@ footer strong {
 
     <div class="photo-card">
 
-        <!--
-        ХОЧЕШЬ ДОБАВИТЬ ФОТО?
-
-        1. Положи фото рядом с index.html
-        2. Назови его polina.jpg
-        3. Удали display:none ниже
-        -->
-
         <img src="polina.jpg" alt="Polina">
 
         <div class="photo-placeholder">
             <span>📸</span>
-            <p>polina.jpg<br>waiting for upload...</p>
+            <p>
+                polina.jpg<br>
+                waiting for upload...
+            </p>
         </div>
 
     </div>
 
 </section>
 
+
 <!-- SECRET -->
 
 <section class="secret">
 
-    <div class="section-label">03 / classified</div>
+    <div class="section-label">
+        03 / classified
+    </div>
 
     <div class="secret-box">
 
@@ -515,8 +531,9 @@ footer strong {
         </h3>
 
         <p>
-            Но сначала нужно доказать, что ты действительно Полина.
-            Хотя ладно. Я и так знаю.
+            Ты прошла проверку.
+            Хотя если честно — других вариантов
+            мы и не рассматривали.
         </p>
 
         <button onclick="openSecret()">
@@ -525,13 +542,18 @@ footer strong {
 
         <div class="message" id="message">
 
-            Полина, с днём рождения! ❤️<br><br>
+            Полина, с днём рождения! ❤️
+            <br><br>
 
             Желаю тебе, чтобы этот год был настолько ахуенным,
             чтобы потом хотелось сказать:
+
             <br><br>
 
-            <strong>«Бля, вот это я прожила».</strong>
+            <strong>
+                «Бля, вот это я прожила».
+            </strong>
+
             <br><br>
 
             Оставайся такой же собой,
@@ -552,39 +574,222 @@ footer strong {
 
 </main>
 
+
 <footer>
     made with questionable amounts of effort for
     <strong>Polina</strong> · 2026
 </footer>
+
 
 <script>
 
 /* LOADER */
 
 window.addEventListener("load", () => {
+
     setTimeout(() => {
-        document.getElementById("loader").classList.add("hidden");
+
+        document
+            .getElementById("loader")
+            .classList.add("hidden");
+
         createConfetti();
+
     }, 2300);
+
 });
 
 
-/* SECRET */
+/* TEST */
+
+const questions = [
+
+    {
+        question: "Кто сегодня главный человек?",
+        answers: [
+            "Полина 👑",
+            "Кто-то другой",
+            "Мой кот",
+            "Правительство"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Что Полина заслуживает сегодня?",
+        answers: [
+            "Проблем",
+            "Поздравлений и подарков 🎁",
+            "Работы",
+            "Ничего"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Самое важное правило сегодня?",
+        answers: [
+            "Не улыбаться",
+            "Грустить",
+            "Отдыхать и кайфовать ❤️",
+            "Лечь спать в 21:00"
+        ],
+        correct: 2
+    }
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion() {
+
+    const question = questions[currentQuestion];
+
+    document.getElementById("question").textContent =
+        question.question;
+
+    const answers =
+        document.getElementById("answers");
+
+    answers.innerHTML = "";
+
+    question.answers.forEach((answer, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = answer;
+
+        button.onclick = () => checkAnswer(index);
+
+        answers.appendChild(button);
+
+    });
+
+}
+
+function checkAnswer(index) {
+
+    const question = questions[currentQuestion];
+
+    if(index === question.correct) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    if(currentQuestion < questions.length) {
+
+        loadQuestion();
+
+    } else {
+
+        finishTest();
+
+    }
+
+}
+
+function finishTest() {
+
+    document.getElementById("answers").style.display = "none";
+
+    document.getElementById("question").textContent =
+        "Проверка завершена.";
+
+    const result =
+        document.getElementById("testResult");
+
+    result.classList.add("show");
+
+    result.innerHTML =
+        `Результат: <strong>${score}/${questions.length}</strong> ❤️<br><br>
+        Система постановила: ты официально Полина.`;
+
+    document
+        .getElementById("readyBtn")
+        .classList.add("show");
+
+}
+
+loadQuestion();
+
+
+/* SECRET + MUSIC */
 
 function openSecret() {
 
-    const message = document.getElementById("message");
+    const music =
+        document.getElementById("music");
+
+    const musicBtn =
+        document.getElementById("musicBtn");
+
+    /*
+        Запускаем музыку.
+        Браузер разрешает это,
+        потому что функция вызывается
+        после нажатия пользователем.
+    */
+
+    music.play()
+        .then(() => {
+
+            musicBtn.textContent = "Ⅱ";
+
+        })
+        .catch(error => {
+
+            console.log("Music error:", error);
+
+        });
+
+
+    const message =
+        document.getElementById("message");
 
     message.classList.add("show");
 
     createConfetti(100);
 
     setTimeout(() => {
+
         message.scrollIntoView({
             behavior: "smooth",
             block: "center"
         });
+
     }, 100);
+
+}
+
+
+/* MUSIC BUTTON */
+
+function toggleMusic() {
+
+    const music =
+        document.getElementById("music");
+
+    const btn =
+        document.getElementById("musicBtn");
+
+    if (music.paused) {
+
+        music.play();
+
+        btn.textContent = "Ⅱ";
+
+    } else {
+
+        music.pause();
+
+        btn.textContent = "♫";
+
+    }
+
 }
 
 
@@ -594,11 +799,13 @@ function createConfetti(amount = 60) {
 
     for(let i = 0; i < amount; i++) {
 
-        const piece = document.createElement("div");
+        const piece =
+            document.createElement("div");
 
         piece.className = "confetti";
 
-        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.left =
+            Math.random() * 100 + "vw";
 
         piece.style.animationDuration =
             (Math.random() * 3 + 2) + "s";
@@ -607,63 +814,48 @@ function createConfetti(amount = 60) {
             Math.random() * 1.5 + "s";
 
         piece.style.background =
-            ["#fff","#888","#555","#ccc"][Math.floor(Math.random()*4)];
+            ["#fff","#888","#555","#ccc"]
+            [Math.floor(Math.random() * 4)];
 
         piece.style.transform =
-            `rotate(${Math.random()*360}deg)`;
+            `rotate(${Math.random() * 360}deg)`;
 
         document.body.appendChild(piece);
 
         setTimeout(() => {
+
             piece.remove();
+
         }, 6000);
+
     }
+
 }
 
 
-/* MUSIC */
+/* PHOTO */
 
-function toggleMusic() {
+const photo =
+    document.querySelector(".photo-card img");
 
-    const music = document.getElementById("music");
-    const btn = document.getElementById("musicBtn");
-
-    if (!music.src) {
-
-        alert(
-            "Чтобы включить музыку, положи music.mp3 рядом с index.html."
-        );
-
-        return;
-    }
-
-    if (music.paused) {
-        music.play();
-        btn.textContent = "Ⅱ";
-    } else {
-        music.pause();
-        btn.textContent = "♫";
-    }
-}
-
-
-/* PHOTO FALLBACK */
-
-const photo = document.querySelector(".photo-card img");
-const placeholder = document.querySelector(".photo-placeholder");
+const placeholder =
+    document.querySelector(".photo-placeholder");
 
 photo.addEventListener("load", () => {
+
     photo.style.display = "block";
     placeholder.style.display = "none";
+
 });
 
 photo.addEventListener("error", () => {
+
     photo.style.display = "none";
     placeholder.style.display = "block";
+
 });
 
 </script>
 
 </body>
 </html>
-```
