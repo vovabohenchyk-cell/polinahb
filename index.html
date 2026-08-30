@@ -1,0 +1,669 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POLINA.exe — Birthday Edition</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background: #070707;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.07), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.05), transparent 25%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* LOADER */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #070707;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity .8s ease, visibility .8s ease;
+}
+
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-text {
+    font-size: clamp(20px, 4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.loader-bar {
+    width: 260px;
+    height: 4px;
+    background: #222;
+    margin-top: 22px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loader-progress {
+    height: 100%;
+    width: 0;
+    background: #fff;
+    animation: load 2.2s forwards;
+}
+
+@keyframes load {
+    to { width: 100%; }
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 1100px;
+    width: 100%;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    border: 1px solid #333;
+    padding: 9px 15px;
+    border-radius: 999px;
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: clamp(65px, 15vw, 190px);
+    line-height: .8;
+    font-weight: 900;
+    letter-spacing: -9px;
+    background: linear-gradient(180deg, #fff, #777);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-sub {
+    margin-top: 35px;
+    color: #aaa;
+    font-size: 16px;
+}
+
+.hero-sub strong {
+    color: #fff;
+}
+
+.scroll {
+    margin-top: 70px;
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* SECTION */
+
+section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 110px 20px;
+}
+
+.section-label {
+    color: #666;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: clamp(38px, 7vw, 75px);
+    letter-spacing: -4px;
+    line-height: .95;
+    margin-bottom: 55px;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    background: #101010;
+    border: 1px solid #1e1e1e;
+    border-radius: 20px;
+    padding: 30px;
+    min-height: 150px;
+    transition: .3s;
+}
+
+.stat:hover {
+    transform: translateY(-6px);
+    border-color: #444;
+}
+
+.stat-number {
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.stat-name {
+    color: #777;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+/* PHOTO */
+
+.photo-card {
+    width: 100%;
+    min-height: 500px;
+    border-radius: 30px;
+    border: 1px solid #222;
+    background:
+        linear-gradient(135deg, #151515, #090909);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+    display: none;
+}
+
+.photo-placeholder {
+    text-align: center;
+    color: #555;
+}
+
+.photo-placeholder span {
+    display: block;
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.photo-placeholder p {
+    font-size: 13px;
+}
+
+/* SECRET */
+
+.secret {
+    text-align: center;
+}
+
+.secret-box {
+    background: #101010;
+    border: 1px solid #222;
+    border-radius: 30px;
+    padding: 70px 25px;
+}
+
+.secret-box h3 {
+    font-size: clamp(30px, 5vw, 55px);
+    letter-spacing: -3px;
+}
+
+.secret-box p {
+    color: #777;
+    max-width: 600px;
+    margin: 20px auto 35px;
+    line-height: 1.7;
+}
+
+button {
+    border: none;
+    background: #fff;
+    color: #000;
+    padding: 16px 25px;
+    border-radius: 999px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .25s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.message {
+    display: none;
+    margin-top: 35px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.message.show {
+    display: block;
+    animation: appear .8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FOOTER */
+
+footer {
+    padding: 70px 20px;
+    text-align: center;
+    border-top: 1px solid #151515;
+    color: #555;
+    font-size: 12px;
+}
+
+footer strong {
+    color: #aaa;
+}
+
+/* MUSIC */
+
+.music {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #151515;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 14px;
+    top: -20px;
+    z-index: 9998;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width: 750px) {
+    .hero h1 {
+        letter-spacing: -5px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat {
+        padding: 22px;
+    }
+
+    .photo-card,
+    .photo-card img {
+        min-height: 350px;
+    }
+}
+
+@media(max-width: 450px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+    <div class="loader-text">POLINA.exe</div>
+    <div class="loader-bar">
+        <div class="loader-progress"></div>
+    </div>
+</div>
+
+<!-- MUSIC -->
+
+<button class="music" id="musicBtn" onclick="toggleMusic()">♫</button>
+
+<audio id="music" loop>
+    <!--
+    ЕСЛИ ХОЧЕШЬ МУЗЫКУ:
+    положи music.mp3 рядом с index.html
+    и раскомментируй строку ниже
+
+    <source src="music.mp3" type="audio/mpeg">
+    -->
+</audio>
+
+<!-- HERO -->
+
+<main>
+
+<section class="hero">
+    <div class="hero-content">
+
+        <div class="badge">
+            birthday.exe successfully launched
+        </div>
+
+        <h1>POLINA</h1>
+
+        <div class="hero-sub">
+            Сегодня официально разрешено быть
+            <strong>ещё прекраснее</strong>, чем вчера.
+        </div>
+
+        <div class="scroll">
+            ↓ scroll to continue
+        </div>
+
+    </div>
+</section>
+
+<!-- STATS -->
+
+<section>
+
+    <div class="section-label">01 / character stats</div>
+
+    <h2 class="section-title">
+        Характеристики<br>
+        объекта.
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-name">Легендарность</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">99%</div>
+            <div class="stat-name">Красота</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">404</div>
+            <div class="stat-name">Скука не найдена</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">+1</div>
+            <div class="stat-name">Новый уровень</div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PHOTO -->
+
+<section>
+
+    <div class="section-label">02 / visual evidence</div>
+
+    <h2 class="section-title">
+        Доказательства<br>
+        существования.
+    </h2>
+
+    <div class="photo-card">
+
+        <!--
+        ХОЧЕШЬ ДОБАВИТЬ ФОТО?
+
+        1. Положи фото рядом с index.html
+        2. Назови его polina.jpg
+        3. Удали display:none ниже
+        -->
+
+        <img src="polina.jpg" alt="Polina">
+
+        <div class="photo-placeholder">
+            <span>📸</span>
+            <p>polina.jpg<br>waiting for upload...</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SECRET -->
+
+<section class="secret">
+
+    <div class="section-label">03 / classified</div>
+
+    <div class="secret-box">
+
+        <h3>
+            Тут кое-что<br>
+            для тебя.
+        </h3>
+
+        <p>
+            Но сначала нужно доказать, что ты действительно Полина.
+            Хотя ладно. Я и так знаю.
+        </p>
+
+        <button onclick="openSecret()">
+            ОТКРЫТЬ СЕКРЕТ
+        </button>
+
+        <div class="message" id="message">
+
+            Полина, с днём рождения! ❤️<br><br>
+
+            Желаю тебе, чтобы этот год был настолько ахуенным,
+            чтобы потом хотелось сказать:
+            <br><br>
+
+            <strong>«Бля, вот это я прожила».</strong>
+            <br><br>
+
+            Оставайся такой же собой,
+            не теряй свой характер,
+            чаще улыбайся и пусть рядом будут только те,
+            с кем действительно хорошо.
+
+            <br><br>
+
+            А сегодня просто наслаждайся своим днём.
+            Ты его заслужила. 🫶
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    made with questionable amounts of effort for
+    <strong>Polina</strong> · 2026
+</footer>
+
+<script>
+
+/* LOADER */
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("loader").classList.add("hidden");
+        createConfetti();
+    }, 2300);
+});
+
+
+/* SECRET */
+
+function openSecret() {
+
+    const message = document.getElementById("message");
+
+    message.classList.add("show");
+
+    createConfetti(100);
+
+    setTimeout(() => {
+        message.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
+}
+
+
+/* CONFETTI */
+
+function createConfetti(amount = 60) {
+
+    for(let i = 0; i < amount; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left = Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+            (Math.random() * 3 + 2) + "s";
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        piece.style.background =
+            ["#fff","#888","#555","#ccc"][Math.floor(Math.random()*4)];
+
+        piece.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 6000);
+    }
+}
+
+
+/* MUSIC */
+
+function toggleMusic() {
+
+    const music = document.getElementById("music");
+    const btn = document.getElementById("musicBtn");
+
+    if (!music.src) {
+
+        alert(
+            "Чтобы включить музыку, положи music.mp3 рядом с index.html."
+        );
+
+        return;
+    }
+
+    if (music.paused) {
+        music.play();
+        btn.textContent = "Ⅱ";
+    } else {
+        music.pause();
+        btn.textContent = "♫";
+    }
+}
+
+
+/* PHOTO FALLBACK */
+
+const photo = document.querySelector(".photo-card img");
+const placeholder = document.querySelector(".photo-placeholder");
+
+photo.addEventListener("load", () => {
+    photo.style.display = "block";
+    placeholder.style.display = "none";
+});
+
+photo.addEventListener("error", () => {
+    photo.style.display = "none";
+    placeholder.style.display = "block";
+});
+
+</script>
+
+</body>
+</html>
+```
