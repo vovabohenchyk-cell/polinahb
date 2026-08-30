@@ -4,11 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>POLINA.exe</title>
+<title>POLINA.exe — Birthday Edition</title>
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 * {
@@ -28,49 +26,34 @@ body {
     overflow-x: hidden;
 }
 
-/* BACKGROUND */
-
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-
     background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(255,255,255,.07),
-            transparent 25%
-        ),
-
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(255,255,255,.05),
-            transparent 25%
-        );
-
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.07), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.05), transparent 25%);
     pointer-events: none;
     z-index: -1;
 }
 
 
-/* LOADER */
+/* =========================
+   LOADER
+========================= */
 
 .loader {
     position: fixed;
     inset: 0;
-
     background: #070707;
+    z-index: 9999;
 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 
-    z-index: 9999;
-
-    transition:
-        opacity .8s ease,
-        visibility .8s ease;
+    transition: opacity .8s ease, visibility .8s ease;
 }
 
 .loader.hidden {
@@ -86,41 +69,33 @@ body::before {
 .loader-bar {
     width: 260px;
     height: 4px;
-
     background: #222;
-
     margin-top: 22px;
-
     border-radius: 10px;
-
     overflow: hidden;
 }
 
 .loader-progress {
     width: 0;
     height: 100%;
-
     background: #fff;
-
     animation: load 2s forwards;
 }
 
 @keyframes load {
-
     to {
         width: 100%;
     }
-
 }
 
 
-/* START SCREEN */
+/* =========================
+   START SCREEN
+========================= */
 
 .start-screen {
-
     position: fixed;
     inset: 0;
-
     background: #070707;
 
     display: flex;
@@ -129,78 +104,53 @@ body::before {
 
     z-index: 500;
 
-    transition:
-        opacity .8s ease,
-        visibility .8s ease;
+    transition: opacity .8s ease, visibility .8s ease;
 }
 
 .start-screen.hidden {
-
     opacity: 0;
     visibility: hidden;
-
     pointer-events: none;
 }
 
 .start-content {
-
     text-align: center;
-
     width: 90%;
     max-width: 700px;
 }
 
 .start-small {
-
     color: #666;
-
     font-size: 11px;
-
     letter-spacing: 4px;
-
     text-transform: uppercase;
-
     margin-bottom: 25px;
 }
 
 .start-title {
-
     font-size: clamp(55px, 13vw, 150px);
-
     line-height: .85;
-
     font-weight: 900;
-
     letter-spacing: -8px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #fff,
-            #666
-        );
-
+    background: linear-gradient(180deg, #fff, #666);
     -webkit-background-clip: text;
-
     color: transparent;
 }
 
 .start-text {
-
     color: #777;
-
     margin-top: 30px;
-
     font-size: 15px;
-
     line-height: 1.6;
 }
 
 
-/* READY BUTTON */
+/* =========================
+   READY BUTTON
+========================= */
 
 .ready-button {
-
     margin-top: 45px;
 
     width: 220px;
@@ -211,64 +161,52 @@ body::before {
     border: 1px solid #444;
 
     background: #fff;
-
     color: #000;
 
     font-size: 15px;
-
     font-weight: 900;
-
     letter-spacing: 2px;
 
     cursor: pointer;
 
     transition: .3s;
 
-    box-shadow:
-        0 0 0 0 rgba(255,255,255,.1);
+    box-shadow: 0 0 0 0 rgba(255,255,255,.1);
 }
 
 .ready-button:hover {
-
     transform: scale(1.05);
-
-    box-shadow:
-        0 0 40px rgba(255,255,255,.12);
+    box-shadow: 0 0 40px rgba(255,255,255,.12);
 }
 
 .ready-button:active {
-
     transform: scale(.97);
-
 }
 
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
 
 main {
-
     opacity: 0;
-
-    transition:
-        opacity 1s ease;
+    transition: opacity 1s ease;
 }
 
 main.visible {
-
     opacity: 1;
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero {
-
     min-height: 100vh;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 40px 20px;
@@ -277,14 +215,11 @@ main.visible {
 }
 
 .hero-content {
-
     width: 100%;
-
     max-width: 1100px;
 }
 
 .badge {
-
     display: inline-block;
 
     border: 1px solid #333;
@@ -305,9 +240,7 @@ main.visible {
 }
 
 .hero h1 {
-
-    font-size:
-        clamp(65px, 15vw, 190px);
+    font-size: clamp(65px, 15vw, 190px);
 
     line-height: .8;
 
@@ -315,23 +248,16 @@ main.visible {
 
     letter-spacing: -9px;
 
-    background:
-        linear-gradient(
-            180deg,
-            #fff,
-            #777
-        );
+    background: linear-gradient(180deg, #fff, #777);
 
     -webkit-background-clip: text;
 
     color: transparent;
 
-    animation:
-        float 5s ease-in-out infinite;
+    animation: float 5s ease-in-out infinite;
 }
 
 @keyframes float {
-
     0%,100% {
         transform: translateY(0);
     }
@@ -339,11 +265,9 @@ main.visible {
     50% {
         transform: translateY(-10px);
     }
-
 }
 
 .hero-sub {
-
     margin-top: 35px;
 
     color: #888;
@@ -354,12 +278,10 @@ main.visible {
 }
 
 .hero-sub strong {
-
     color: #fff;
 }
 
 .scroll {
-
     margin-top: 70px;
 
     color: #555;
@@ -370,23 +292,21 @@ main.visible {
 
     text-transform: uppercase;
 
-    animation:
-        pulse 2s infinite;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-
     50% {
         opacity: .3;
     }
-
 }
 
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 section {
-
     max-width: 1100px;
 
     margin: auto;
@@ -395,7 +315,6 @@ section {
 }
 
 .section-label {
-
     color: #555;
 
     text-transform: uppercase;
@@ -408,9 +327,7 @@ section {
 }
 
 .section-title {
-
-    font-size:
-        clamp(38px, 7vw, 75px);
+    font-size: clamp(38px, 7vw, 75px);
 
     letter-spacing: -4px;
 
@@ -420,149 +337,173 @@ section {
 }
 
 
-/* FACTS */
+/* =========================
+   PHOTO GALLERY
+========================= */
 
-.facts {
-
+.photo-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-auto-rows: 360px;
 
     gap: 15px;
 }
 
-.fact {
+.photo-item {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    border: 1px solid #222;
+
+    background: #101010;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .7s ease,
+        filter .7s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.04);
+
+    filter: brightness(.8);
+}
+
+.photo-big {
+    grid-row: span 2;
+}
+
+
+/* =========================
+   FRIEND MESSAGES
+========================= */
+
+.friends-section {
+    max-width: 900px;
+}
+
+.messages-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.friend-message {
+    display: flex;
+
+    gap: 16px;
+
+    padding: 22px;
 
     background: #101010;
 
     border: 1px solid #222;
 
-    border-radius: 25px;
+    border-radius: 24px;
 
-    padding: 35px;
+    transition: .3s ease;
 
-    min-height: 220px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    transition: .3s;
+    animation: messageAppear .7s ease both;
 }
 
-.fact:hover {
+.friend-message:hover {
+    border-color: #3a3a3a;
 
-    transform: translateY(-6px);
-
-    border-color: #444;
-}
-
-.fact-number {
-
-    color: #555;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-.fact h3 {
-
-    font-size: 24px;
-
-    letter-spacing: -1px;
-}
-
-.fact p {
-
-    color: #777;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
-    margin-top: 15px;
+    transform: translateX(5px);
 }
 
 
-/* PHOTO */
+/* AVATAR */
 
-.photo-card {
+.friend-avatar {
+    width: 54px;
+    height: 54px;
 
-    width: 100%;
+    min-width: 54px;
 
-    min-height: 500px;
-
-    border-radius: 30px;
-
-    border: 1px solid #222;
-
-    background:
-        linear-gradient(
-            135deg,
-            #151515,
-            #090909
-        );
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
-
-    position: relative;
-}
-
-.photo-card img {
-
-    width: 100%;
-    height: 100%;
-
-    min-height: 500px;
+    border-radius: 50%;
 
     object-fit: cover;
 
-    display: none;
-}
+    border: 1px solid #333;
 
-.photo-placeholder {
-
-    text-align: center;
-
-    color: #555;
-}
-
-.photo-placeholder span {
-
-    display: block;
-
-    font-size: 60px;
-
-    margin-bottom: 15px;
-}
-
-.photo-placeholder p {
-
-    font-size: 13px;
-
-    line-height: 1.6;
+    background: #181818;
 }
 
 
-/* SECRET */
+/* MESSAGE */
+
+.friend-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.friend-name {
+    font-size: 15px;
+
+    font-weight: 800;
+
+    margin-bottom: 9px;
+
+    color: #fff;
+}
+
+.friend-name span {
+    color: #666;
+
+    font-weight: 500;
+
+    margin-left: 4px;
+}
+
+.friend-text {
+    color: #aaa;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   SECRET
+========================= */
 
 .secret {
-
     text-align: center;
 }
 
 .secret-box {
-
     background: #101010;
 
     border: 1px solid #222;
@@ -573,9 +514,7 @@ section {
 }
 
 .secret-box h3 {
-
-    font-size:
-        clamp(30px, 5vw, 55px);
+    font-size: clamp(30px, 5vw, 55px);
 
     letter-spacing: -3px;
 
@@ -583,7 +522,6 @@ section {
 }
 
 .secret-box p {
-
     color: #777;
 
     max-width: 600px;
@@ -594,12 +532,30 @@ section {
 }
 
 .open-button {
-
     margin-top: 35px;
+
+    border: none;
+
+    background: #fff;
+
+    color: #000;
+
+    padding: 16px 25px;
+
+    border-radius: 999px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.open-button:hover {
+    transform: scale(1.05);
 }
 
 .message {
-
     display: none;
 
     margin-top: 40px;
@@ -610,40 +566,31 @@ section {
 }
 
 .message.show {
-
     display: block;
 
-    animation:
-        appear .8s ease;
+    animation: appear .8s ease;
 }
 
 @keyframes appear {
-
     from {
-
         opacity: 0;
 
-        transform:
-            translateY(20px);
-
+        transform: translateY(20px);
     }
 
     to {
-
         opacity: 1;
 
-        transform:
-            translateY(0);
-
+        transform: translateY(0);
     }
-
 }
 
 
-/* MUSIC */
+/* =========================
+   MUSIC
+========================= */
 
 .music {
-
     position: fixed;
 
     right: 20px;
@@ -677,16 +624,15 @@ section {
 }
 
 .music:hover {
-
     transform: scale(1.08);
-
 }
 
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-
     padding: 70px 20px;
 
     text-align: center;
@@ -699,15 +645,15 @@ footer {
 }
 
 footer strong {
-
     color: #aaa;
 }
 
 
-/* CONFETTI */
+/* =========================
+   CONFETTI
+========================= */
 
 .confetti {
-
     position: fixed;
 
     width: 8px;
@@ -717,46 +663,69 @@ footer strong {
 
     z-index: 9998;
 
-    animation:
-        fall linear forwards;
+    animation: fall linear forwards;
 }
 
 @keyframes fall {
-
     to {
-
         transform:
             translateY(110vh)
             rotate(720deg);
-
     }
-
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width: 750px) {
 
     .hero h1 {
-
         letter-spacing: -5px;
     }
 
-    .facts {
-
+    .photo-grid {
         grid-template-columns: 1fr;
+
+        grid-auto-rows: 400px;
     }
 
-    .photo-card,
-    .photo-card img {
-
-        min-height: 350px;
+    .photo-big {
+        grid-row: span 1;
     }
 
     .start-title {
-
         letter-spacing: -5px;
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    .friend-message {
+        padding: 17px;
+
+        gap: 12px;
+
+        border-radius: 20px;
+    }
+
+    .friend-avatar {
+        width: 46px;
+        height: 46px;
+
+        min-width: 46px;
+    }
+
+    .friend-text {
+        font-size: 13px;
+
+        line-height: 1.65;
+    }
+
+    .friend-name {
+        font-size: 14px;
     }
 
 }
@@ -768,7 +737,9 @@ footer strong {
 <body>
 
 
-<!-- LOADER -->
+<!-- =========================
+     LOADER
+========================= -->
 
 <div class="loader" id="loader">
 
@@ -785,7 +756,9 @@ footer strong {
 </div>
 
 
-<!-- START -->
+<!-- =========================
+     START SCREEN
+========================= -->
 
 <div class="start-screen" id="startScreen">
 
@@ -800,10 +773,8 @@ footer strong {
         </div>
 
         <div class="start-text">
-
             Всё готово.<br>
             Осталось только нажать одну кнопку.
-
         </div>
 
         <button
@@ -819,7 +790,9 @@ footer strong {
 </div>
 
 
-<!-- MUSIC -->
+<!-- =========================
+     MUSIC
+========================= -->
 
 <button
     class="music"
@@ -829,7 +802,6 @@ footer strong {
     ♫
 
 </button>
-
 
 <audio
     id="music"
@@ -843,7 +815,9 @@ footer strong {
 </audio>
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN
+========================= -->
 
 <main id="main">
 
@@ -873,9 +847,7 @@ footer strong {
         </div>
 
         <div class="scroll">
-
             ↓ scroll to continue
-
         </div>
 
     </div>
@@ -883,141 +855,287 @@ footer strong {
 </section>
 
 
-<!-- FACTS -->
+<!-- =========================
+     PHOTO GALLERY
+========================= -->
 
 <section>
 
     <div class="section-label">
-        01 / random information
+        01 / visual archive
     </div>
 
     <h2 class="section-title">
-
-        Несколько<br>
-        наблюдений.
-
+        Немного<br>
+        визуальных доказательств.
     </h2>
 
 
-    <div class="facts">
+    <div class="photo-grid">
 
-
-        <div class="fact">
-
-            <div class="fact-number">
-                001
-            </div>
-
-            <div>
-
-                <h3>
-                    Сегодня можно
-                </h3>
-
-                <p>
-                    Забить на всё,
-                    что может подождать до завтра.
-                </p>
-
-            </div>
-
+        <div class="photo-item photo-big">
+            <img
+                src="./polina1.jpg"
+                alt="Polina 1">
         </div>
 
-
-        <div class="fact">
-
-            <div class="fact-number">
-                002
-            </div>
-
-            <div>
-
-                <h3>
-                    Хороший день
-                </h3>
-
-                <p>
-                    Не обязательно должен
-                    быть идеальным.
-                    Главное — чтобы нравился тебе.
-                </p>
-
-            </div>
-
+        <div class="photo-item">
+            <img
+                src="./polina2.jpg"
+                alt="Polina 2">
         </div>
 
-
-        <div class="fact">
-
-            <div class="fact-number">
-                003
-            </div>
-
-            <div>
-
-                <h3>
-                    Приоритет
-                </h3>
-
-                <p>
-                    Хорошая музыка,
-                    приятные люди
-                    и никаких лишних нервов.
-                </p>
-
-            </div>
-
+        <div class="photo-item">
+            <img
+                src="./polina3.jpg"
+                alt="Polina 3">
         </div>
 
+        <div class="photo-item">
+            <img
+                src="./polina4.jpg"
+                alt="Polina 4">
+        </div>
+
+        <div class="photo-item">
+            <img
+                src="./polina5.jpg"
+                alt="Polina 5">
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- PHOTO -->
+<!-- =========================
+     FRIENDS
+========================= -->
 
-<section>
+<section class="friends-section">
 
     <div class="section-label">
-        02 / visual evidence
+        02 / from your people
     </div>
 
     <h2 class="section-title">
-
-        Фото,<br>
-        которое здесь должно быть.
-
+        Сообщения<br>
+        от своих.
     </h2>
 
 
-    <div class="photo-card">
+    <div class="messages-list">
 
-        <img
-            src="./polina.jpg"
-            alt="Polina">
 
-        <div class="photo-placeholder">
+        <!-- АЛЕНА -->
 
-            <span>
-                📸
-            </span>
+        <div class="friend-message">
 
-            <p>
+            <img
+                class="friend-avatar"
+                src="./alen.jpg"
+                alt="Алена">
 
-                polina.jpg<br>
-                waiting for upload...
+            <div class="friend-content">
 
-            </p>
+                <div class="friend-name">
+                    Алена
+                </div>
+
+                <div class="friend-text">
+
+                    Полина поздравляю с дней рождения
+                    желаю счастья здоровья и всего самого
+                    лучшего 🥳🥳🥳🥳
+
+                </div>
+
+            </div>
 
         </div>
+
+
+        <!-- НИКИТА -->
+
+        <div class="friend-message">
+
+            <img
+                class="friend-avatar"
+                src="./nikita.jpg"
+                alt="Никита">
+
+            <div class="friend-content">
+
+                <div class="friend-name">
+                    Никита <span>(Старый Бог)</span>
+                </div>
+
+                <div class="friend-text">
+
+                    Моя любимая полиночка, бабок тебе,
+                    что бы все о чем ты мечтаешь и
+                    стремишься у тебя получилось
+                    и главное чтоб ты была счастливой
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- МАША -->
+
+        <div class="friend-message">
+
+            <img
+                class="friend-avatar"
+                src="./masha.jpg"
+                alt="Маша">
+
+            <div class="friend-content">
+
+                <div class="friend-name">
+                    Маша
+                </div>
+
+                <div class="friend-text">
+
+                    Я желаю тебе всего самого лучшего
+                    и хочу, чтоб ты была счастлива 🫂
+
+                    <br><br>
+
+                    Люблю тебя ❤️
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- КАТЯ -->
+
+        <div class="friend-message">
+
+            <img
+                class="friend-avatar"
+                src="./katya.jpg"
+                alt="Катя">
+
+            <div class="friend-content">
+
+                <div class="friend-name">
+                    Катя
+                </div>
+
+                <div class="friend-text">
+
+                    Буся, расти бальшой не будь лапшой
+
+                    <br><br>
+
+                    желаю тебе всего самого наилучшего,
+                    деняг многа, здоровья, счастья, удачи,
+                    любви и хорошего хахаля (дай боже)
+                    и мне сил и терпения на тебя ❤️❤️❤️
+
+                    <br><br>
+
+                    я тебя очень сильно люблю коза моя любимая ❤️
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ТУСЯ -->
+
+        <div class="friend-message">
+
+            <img
+                class="friend-avatar"
+                src="./tyca.jpg"
+                alt="Туся">
+
+            <div class="friend-content">
+
+                <div class="friend-name">
+                    Туся
+                </div>
+
+                <div class="friend-text">
+
+                    Желаю побольше классных моментов,
+                    спонтанных поездок, весёлых вечеров,
+                    безумных историй и воспоминаний,
+                    которые потом будем вспоминать
+                    и смеяться.
+
+                    <br><br>
+
+                    И конечно, чтобы рядом всегда были
+                    люди, которые тебя любят, ценят
+                    и никогда не дадут тебе грустить 💋💋
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- МАША КОВАЛЬ -->
+
+        <div class="friend-message">
+
+            <img
+                class="friend-avatar"
+                src="./mashakoval.jpg"
+                alt="Маша">
+
+            <div class="friend-content">
+
+                <div class="friend-name">
+                    Маша
+                </div>
+
+                <div class="friend-text">
+
+                    С днём рождения, родная ❤️
+
+                    <br><br>
+
+                    пусть все сложится наилучшим образом,
+                    будь счастлива, люби и будь любима!
+                    ты заслуживаешь наилучшего.
+
+                    <br><br>
+
+                    спасибо, что ты есть!
+
+                    <br><br>
+
+                    Люблю ❤️
+
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div>
 
 </section>
 
 
-<!-- SECRET -->
+<!-- =========================
+     SECRET
+========================= -->
 
 <section class="secret">
 
@@ -1025,16 +1143,12 @@ footer strong {
         03 / classified
     </div>
 
-
     <div class="secret-box">
 
         <h3>
-
             Ладно.<br>
             Теперь главное.
-
         </h3>
-
 
         <p>
 
@@ -1044,7 +1158,6 @@ footer strong {
             хотелось оставить здесь.
 
         </p>
-
 
         <button
             class="open-button"
@@ -1103,6 +1216,8 @@ footer strong {
 </main>
 
 
+<!-- FOOTER -->
+
 <footer>
 
     made with questionable amounts of effort for
@@ -1114,7 +1229,9 @@ footer strong {
 <script>
 
 
-/* ELEMENTS */
+/* =========================
+   ELEMENTS
+========================= */
 
 const loader =
     document.getElementById("loader");
@@ -1141,7 +1258,9 @@ const message =
     document.getElementById("message");
 
 
-/* LOADER */
+/* =========================
+   LOADER
+========================= */
 
 window.addEventListener("load", () => {
 
@@ -1154,16 +1273,11 @@ window.addEventListener("load", () => {
 });
 
 
-/* START BUTTON */
+/* =========================
+   START
+========================= */
 
 readyButton.addEventListener("click", async () => {
-
-    /*
-        Самое важное:
-        музыка запускается именно
-        после клика пользователя.
-        Поэтому браузер не блокирует её.
-    */
 
     try {
 
@@ -1185,28 +1299,18 @@ readyButton.addEventListener("click", async () => {
     }
 
 
-    /*
-        Закрываем стартовый экран
-    */
-
     startScreen.classList.add("hidden");
 
-    /*
-        Показываем сайт
-    */
-
     main.classList.add("visible");
-
-    /*
-        Немного конфетти
-    */
 
     createConfetti(70);
 
 });
 
 
-/* MUSIC BUTTON */
+/* =========================
+   MUSIC BUTTON
+========================= */
 
 musicBtn.addEventListener("click", async () => {
 
@@ -1242,7 +1346,9 @@ musicBtn.addEventListener("click", async () => {
 });
 
 
-/* SECRET */
+/* =========================
+   SECRET
+========================= */
 
 secretBtn.addEventListener("click", () => {
 
@@ -1264,7 +1370,9 @@ secretBtn.addEventListener("click", () => {
 });
 
 
-/* CONFETTI */
+/* =========================
+   CONFETTI
+========================= */
 
 function createConfetti(amount = 60) {
 
@@ -1317,40 +1425,6 @@ function createConfetti(amount = 60) {
     }
 
 }
-
-
-/* PHOTO */
-
-const photo =
-    document.querySelector(".photo-card img");
-
-const placeholder =
-    document.querySelector(
-        ".photo-placeholder"
-    );
-
-
-photo.addEventListener("load", () => {
-
-    photo.style.display =
-        "block";
-
-    placeholder.style.display =
-        "none";
-
-});
-
-
-photo.addEventListener("error", () => {
-
-    photo.style.display =
-        "none";
-
-    placeholder.style.display =
-        "block";
-
-});
-
 
 </script>
 
