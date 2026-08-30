@@ -135,6 +135,7 @@ body::before {
 
     background: linear-gradient(180deg, #fff, #666);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 
@@ -147,7 +148,7 @@ body::before {
 
 
 /* =========================
-   READY BUTTON
+   READY
 ========================= */
 
 .ready-button {
@@ -170,8 +171,6 @@ body::before {
     cursor: pointer;
 
     transition: .3s;
-
-    box-shadow: 0 0 0 0 rgba(255,255,255,.1);
 }
 
 .ready-button:hover {
@@ -251,6 +250,7 @@ main.visible {
     background: linear-gradient(180deg, #fff, #777);
 
     -webkit-background-clip: text;
+    background-clip: text;
 
     color: transparent;
 
@@ -338,7 +338,7 @@ section {
 
 
 /* =========================
-   PHOTO GALLERY
+   PHOTOS
 ========================= */
 
 .photo-grid {
@@ -361,6 +361,8 @@ section {
     border: 1px solid #222;
 
     background: #101010;
+
+    min-width: 0;
 }
 
 .photo-item img {
@@ -371,14 +373,20 @@ section {
 
     display: block;
 
+    opacity: 0;
+
     transition:
+        opacity .5s ease,
         transform .7s ease,
         filter .7s ease;
 }
 
+.photo-item img.loaded {
+    opacity: 1;
+}
+
 .photo-item:hover img {
     transform: scale(1.04);
-
     filter: brightness(.8);
 }
 
@@ -388,7 +396,7 @@ section {
 
 
 /* =========================
-   FRIEND MESSAGES
+   FRIENDS
 ========================= */
 
 .friends-section {
@@ -417,8 +425,6 @@ section {
     border-radius: 24px;
 
     transition: .3s ease;
-
-    animation: messageAppear .7s ease both;
 }
 
 .friend-message:hover {
@@ -430,7 +436,7 @@ section {
 
 /* AVATAR */
 
-.friend-avatar {
+.friend-avatar-wrap {
     width: 54px;
     height: 54px;
 
@@ -438,11 +444,20 @@ section {
 
     border-radius: 50%;
 
-    object-fit: cover;
-
-    border: 1px solid #333;
+    overflow: hidden;
 
     background: #181818;
+
+    border: 1px solid #333;
+}
+
+.friend-avatar {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
 }
 
 
@@ -450,7 +465,6 @@ section {
 
 .friend-content {
     flex: 1;
-
     min-width: 0;
 }
 
@@ -478,20 +492,8 @@ section {
     font-size: 14px;
 
     line-height: 1.7;
-}
 
-@keyframes messageAppear {
-    from {
-        opacity: 0;
-
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform: translateY(0);
-    }
+    white-space: pre-line;
 }
 
 
@@ -574,13 +576,11 @@ section {
 @keyframes appear {
     from {
         opacity: 0;
-
         transform: translateY(20px);
     }
 
     to {
         opacity: 1;
-
         transform: translateY(0);
     }
 }
@@ -711,7 +711,7 @@ footer strong {
         border-radius: 20px;
     }
 
-    .friend-avatar {
+    .friend-avatar-wrap {
         width: 46px;
         height: 46px;
 
@@ -737,9 +737,7 @@ footer strong {
 <body>
 
 
-<!-- =========================
-     LOADER
-========================= -->
+<!-- LOADER -->
 
 <div class="loader" id="loader">
 
@@ -748,17 +746,13 @@ footer strong {
     </div>
 
     <div class="loader-bar">
-
         <div class="loader-progress"></div>
-
     </div>
 
 </div>
 
 
-<!-- =========================
-     START SCREEN
-========================= -->
+<!-- START -->
 
 <div class="start-screen" id="startScreen">
 
@@ -790,9 +784,7 @@ footer strong {
 </div>
 
 
-<!-- =========================
-     MUSIC
-========================= -->
+<!-- MUSIC -->
 
 <button
     class="music"
@@ -803,21 +795,20 @@ footer strong {
 
 </button>
 
+
 <audio
     id="music"
     loop
     preload="auto">
 
     <source
-        src="./swages.mp3"
+        src="swages.mp3"
         type="audio/mpeg">
 
 </audio>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <main id="main">
 
@@ -874,33 +865,52 @@ footer strong {
     <div class="photo-grid">
 
         <div class="photo-item photo-big">
+
             <img
-                src="./polina1.jpg"
-                alt="Polina 1">
+                src="polina1.jpg"
+                alt="Polina 1"
+                onload="this.classList.add('loaded')">
+
         </div>
 
-        <div class="photo-item">
-            <img
-                src="./polina2.jpg"
-                alt="Polina 2">
-        </div>
 
         <div class="photo-item">
+
             <img
-                src="./polina3.jpg"
-                alt="Polina 3">
+                src="polina2.jpg"
+                alt="Polina 2"
+                onload="this.classList.add('loaded')">
+
         </div>
 
-        <div class="photo-item">
-            <img
-                src="./polina4.jpg"
-                alt="Polina 4">
-        </div>
 
         <div class="photo-item">
+
             <img
-                src="./polina5.jpg"
-                alt="Polina 5">
+                src="polina3.jpg"
+                alt="Polina 3"
+                onload="this.classList.add('loaded')">
+
+        </div>
+
+
+        <div class="photo-item">
+
+            <img
+                src="polina4.jpg"
+                alt="Polina 4"
+                onload="this.classList.add('loaded')">
+
+        </div>
+
+
+        <div class="photo-item">
+
+            <img
+                src="polina5.jpg"
+                alt="Polina 5"
+                onload="this.classList.add('loaded')">
+
         </div>
 
     </div>
@@ -931,10 +941,14 @@ footer strong {
 
         <div class="friend-message">
 
-            <img
-                class="friend-avatar"
-                src="./alen.jpg"
-                alt="Алена">
+            <div class="friend-avatar-wrap">
+
+                <img
+                    class="friend-avatar"
+                    src="alen.jpg"
+                    alt="Алена">
+
+            </div>
 
             <div class="friend-content">
 
@@ -942,13 +956,9 @@ footer strong {
                     Алена
                 </div>
 
-                <div class="friend-text">
-
-                    Полина поздравляю с дней рождения
-                    желаю счастья здоровья и всего самого
-                    лучшего 🥳🥳🥳🥳
-
-                </div>
+                <div class="friend-text">Полина поздравляю с дней рождения
+желаю счастья здоровья и всего самого
+лучшего 🥳🥳🥳🥳</div>
 
             </div>
 
@@ -959,10 +969,14 @@ footer strong {
 
         <div class="friend-message">
 
-            <img
-                class="friend-avatar"
-                src="./nikita.jpg"
-                alt="Никита">
+            <div class="friend-avatar-wrap">
+
+                <img
+                    class="friend-avatar"
+                    src="nikita.jpg"
+                    alt="Никита">
+
+            </div>
 
             <div class="friend-content">
 
@@ -970,14 +984,10 @@ footer strong {
                     Никита <span>(Старый Бог)</span>
                 </div>
 
-                <div class="friend-text">
-
-                    Моя любимая полиночка, бабок тебе,
-                    что бы все о чем ты мечтаешь и
-                    стремишься у тебя получилось
-                    и главное чтоб ты была счастливой
-
-                </div>
+                <div class="friend-text">Моя любимая полиночка, бабок тебе,
+что бы все о чем ты мечтаешь и
+стремишься у тебя получилось
+и главное чтоб ты была счастливой</div>
 
             </div>
 
@@ -988,10 +998,14 @@ footer strong {
 
         <div class="friend-message">
 
-            <img
-                class="friend-avatar"
-                src="./masha.jpg"
-                alt="Маша">
+            <div class="friend-avatar-wrap">
+
+                <img
+                    class="friend-avatar"
+                    src="masha.jpg"
+                    alt="Маша">
+
+            </div>
 
             <div class="friend-content">
 
@@ -999,16 +1013,10 @@ footer strong {
                     Маша
                 </div>
 
-                <div class="friend-text">
+                <div class="friend-text">Я желаю тебе всего самого лучшего
+и хочу, чтоб ты была счастлива 🫂
 
-                    Я желаю тебе всего самого лучшего
-                    и хочу, чтоб ты была счастлива 🫂
-
-                    <br><br>
-
-                    Люблю тебя ❤️
-
-                </div>
+Люблю тебя ❤️</div>
 
             </div>
 
@@ -1019,10 +1027,14 @@ footer strong {
 
         <div class="friend-message">
 
-            <img
-                class="friend-avatar"
-                src="./katya.jpg"
-                alt="Катя">
+            <div class="friend-avatar-wrap">
+
+                <img
+                    class="friend-avatar"
+                    src="katya.jpg"
+                    alt="Катя">
+
+            </div>
 
             <div class="friend-content">
 
@@ -1030,22 +1042,14 @@ footer strong {
                     Катя
                 </div>
 
-                <div class="friend-text">
+                <div class="friend-text">Буся, расти бальшой не будь лапшой
 
-                    Буся, расти бальшой не будь лапшой
+желаю тебе всего самого наилучшего,
+деняг многа, здоровья, счастья, удачи,
+любви и хорошего хахаля (дай боже)
+и мне сил и терпения на тебя ❤️❤️❤️
 
-                    <br><br>
-
-                    желаю тебе всего самого наилучшего,
-                    деняг многа, здоровья, счастья, удачи,
-                    любви и хорошего хахаля (дай боже)
-                    и мне сил и терпения на тебя ❤️❤️❤️
-
-                    <br><br>
-
-                    я тебя очень сильно люблю коза моя любимая ❤️
-
-                </div>
+я тебя очень сильно люблю коза моя любимая ❤️</div>
 
             </div>
 
@@ -1056,10 +1060,14 @@ footer strong {
 
         <div class="friend-message">
 
-            <img
-                class="friend-avatar"
-                src="./tyca.jpg"
-                alt="Туся">
+            <div class="friend-avatar-wrap">
+
+                <img
+                    class="friend-avatar"
+                    src="tyca.jpg"
+                    alt="Туся">
+
+            </div>
 
             <div class="friend-content">
 
@@ -1067,21 +1075,14 @@ footer strong {
                     Туся
                 </div>
 
-                <div class="friend-text">
+                <div class="friend-text">Желаю побольше классных моментов,
+спонтанных поездок, весёлых вечеров,
+безумных историй и воспоминаний,
+которые потом будем вспоминать и смеяться.
 
-                    Желаю побольше классных моментов,
-                    спонтанных поездок, весёлых вечеров,
-                    безумных историй и воспоминаний,
-                    которые потом будем вспоминать
-                    и смеяться.
-
-                    <br><br>
-
-                    И конечно, чтобы рядом всегда были
-                    люди, которые тебя любят, ценят
-                    и никогда не дадут тебе грустить 💋💋
-
-                </div>
+И конечно, чтобы рядом всегда были
+люди, которые тебя любят, ценят
+и никогда не дадут тебе грустить 💋💋</div>
 
             </div>
 
@@ -1092,10 +1093,14 @@ footer strong {
 
         <div class="friend-message">
 
-            <img
-                class="friend-avatar"
-                src="./mashakoval.jpg"
-                alt="Маша">
+            <div class="friend-avatar-wrap">
+
+                <img
+                    class="friend-avatar"
+                    src="mashakoval.jpg"
+                    alt="Маша">
+
+            </div>
 
             <div class="friend-content">
 
@@ -1103,25 +1108,15 @@ footer strong {
                     Маша
                 </div>
 
-                <div class="friend-text">
+                <div class="friend-text">С днём рождения, родная ❤️
 
-                    С днём рождения, родная ❤️
+пусть все сложится наилучшим образом,
+будь счастлива, люби и будь любима!
+ты заслуживаешь наилучшего.
 
-                    <br><br>
+спасибо, что ты есть!
 
-                    пусть все сложится наилучшим образом,
-                    будь счастлива, люби и будь любима!
-                    ты заслуживаешь наилучшего.
-
-                    <br><br>
-
-                    спасибо, что ты есть!
-
-                    <br><br>
-
-                    Люблю ❤️
-
-                </div>
+Люблю ❤️</div>
 
             </div>
 
@@ -1151,12 +1146,10 @@ footer strong {
         </h3>
 
         <p>
-
             Дальше уже без всяких
             интерактивов и проверок.
             Просто сообщение, которое
             хотелось оставить здесь.
-
         </p>
 
         <button
@@ -1228,7 +1221,6 @@ footer strong {
 
 <script>
 
-
 /* =========================
    ELEMENTS
 ========================= */
@@ -1287,17 +1279,11 @@ readyButton.addEventListener("click", async () => {
 
         musicBtn.textContent = "Ⅱ";
 
-    }
+    } catch (error) {
 
-    catch (error) {
-
-        console.log(
-            "Music error:",
-            error
-        );
+        console.log("Music error:", error);
 
     }
-
 
     startScreen.classList.add("hidden");
 
@@ -1309,7 +1295,7 @@ readyButton.addEventListener("click", async () => {
 
 
 /* =========================
-   MUSIC BUTTON
+   MUSIC
 ========================= */
 
 musicBtn.addEventListener("click", async () => {
@@ -1322,20 +1308,13 @@ musicBtn.addEventListener("click", async () => {
 
             musicBtn.textContent = "Ⅱ";
 
-        }
+        } catch (error) {
 
-        catch (error) {
-
-            console.log(
-                "Music error:",
-                error
-            );
+            console.log("Music error:", error);
 
         }
 
-    }
-
-    else {
+    } else {
 
         music.pause();
 
@@ -1376,11 +1355,7 @@ secretBtn.addEventListener("click", () => {
 
 function createConfetti(amount = 60) {
 
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
+    for (let i = 0; i < amount; i++) {
 
         const piece =
             document.createElement("div");
@@ -1404,17 +1379,13 @@ function createConfetti(amount = 60) {
                 "#555",
                 "#ccc"
             ][
-                Math.floor(
-                    Math.random() * 4
-                )
+                Math.floor(Math.random() * 4)
             ];
 
         piece.style.transform =
             `rotate(${Math.random() * 360}deg)`;
 
-
         document.body.appendChild(piece);
-
 
         setTimeout(() => {
 
